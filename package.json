@@ -1,0 +1,37 @@
+{
+  "name": "projeto-mentoria",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node-dev src/main.ts",
+    "typeorm": "typeorm-ts-node-commonjs",
+    "typeorm:cli": "ts-node-dev ./node_modules/typeorm/cli.js",
+    "docker:start": "docker-compose up --build",
+    "docker:start:app": "docker-compose up --build projeto-mentoria-app",
+    "docker:start:db": "docker-compose up --build projeto-mentoria-db"
+  },
+  "keywords": [],
+  "author": "Rebeca Tinoco",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.1",
+    "express-async-errors": "^3.1.1",
+    "pg": "^8.4.0",
+    "reflect-metadata": "^0.1.13",
+    "typeorm": "0.3.20"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^5.0.0",
+    "@types/node": "^16.11.10",
+    "@types/pg": "^8.11.10",
+    "ts-node": "10.9.1",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "4.5.2"
+  }
+}
