@@ -1,6 +1,6 @@
-import { Product } from "../entity/product.entity";
+import { Product } from "../dto/product.dto";
 
 export interface ProductGateway {
   save(product: Product): Promise<void>;
-  list(): Promise<Product[]>;
+  getProducts(): Promise<Product[]>;
 }

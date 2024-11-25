@@ -1,17 +1,15 @@
-import { Product } from "../../domain/product/entity/product.entity";
+import { Product } from "../../domain/product/dto/product.dto";
 import { ProductGateway } from "../../domain/product/gateway/product.gateway";
 import { Usecase } from "../usecase";
 
 export type ListProductInputDto = void;
 
 export type ListProductOutputDto = {
-  products: {
-    id: string;
-    name: string;
-    price: number;
-    quantity: number;
-  }[];
-};
+  id: number;
+  name: string;
+  price: number;
+  quantity: number;
+}[];
 
 export class ListProductUsecase
   implements Usecase<ListProductInputDto, ListProductOutputDto>
@@ -23,7 +21,7 @@ export class ListProductUsecase
   }
 
   public async execute(): Promise<ListProductOutputDto> {
-    const aProducts = await this.productGateway.list();
+    const aProducts = await this.productGateway.getProducts();
 
     const output = this.presentOutput(aProducts);
 
@@ -31,15 +29,13 @@ export class ListProductUsecase
   }
 
   private presentOutput(products: Product[]): ListProductOutputDto {
-    return {
-      products: products.map((p) => {
-        return {
-          id: p.id,
-          name: p.name,
-          price: p.price,
-          quantity: p.quantity,
-        };
-      }),
-    };
+    return products.map((p) => {
+      return {
+        id: p.id,
+        name: p.name,
+        price: p.price,
+        quantity: p.quantity,
+      };
+    });
   }
 }

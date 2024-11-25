@@ -2,7 +2,7 @@ import "reflect-metadata";
 import { DataSource } from "typeorm";
 import dotenv from "dotenv";
 import { CreateProductsTable1732506326359 } from "./migrations/1732506326359-CreateProductsTable";
-import Product from "../domain/product/entity/product1.entity";
+import ProductDB from "../domain/product/entity/product.entity";
 
 dotenv.config();
 
@@ -15,7 +15,7 @@ export const AppDataSource = new DataSource({
   database: process.env.DB_NAME?.toString(),
   synchronize: true,
   logging: false,
-  entities: [Product],
+  entities: [ProductDB],
   migrations: [CreateProductsTable1732506326359],
   subscribers: [],
 });

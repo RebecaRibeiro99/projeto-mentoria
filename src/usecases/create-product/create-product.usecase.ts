@@ -1,4 +1,4 @@
-import { Product } from "../../domain/product/entity/product.entity";
+import { Product } from "../../domain/product/dto/product.dto";
 import { ProductGateway } from "../../domain/product/gateway/product.gateway";
 import { Usecase } from "../usecase";
 
@@ -7,7 +7,7 @@ export type CreateProductInputDto = {
   price: number;
 };
 export type CreateProductOutputDto = {
-  id: string;
+  id: number;
 };
 
 export class CreateProductUsecase

@@ -1,51 +1,18 @@
-export type ProductProps = {
-  id: string;
-  name: string;
-  price: number;
-  quantity: number;
-};
+import { Entity, Column, PrimaryGeneratedColumn } from "typeorm";
 
-export class Product {
-  private constructor(private props: ProductProps) {
-    this.validate();
-  }
+@Entity("products")
+class ProductDB {
+  @PrimaryGeneratedColumn("increment")
+  id!: number;
 
-  public static create(name: string, price: number) {
-    return new Product({
-      id: crypto.randomUUID().toString(),
-      name,
-      price,
-      quantity: 0,
-    });
-  }
+  @Column("varchar", { length: 255, nullable: false })
+  name!: string;
 
-  public static with(props: ProductProps) {
-    return new Product(props);
-  }
+  @Column("decimal", { precision: 4, scale: 2 })
+  price!: number;
 
-  private validate() {
-    if (this.props.quantity < 0) {
-      throw new Error("Product quantity should be positive");
-    }
-  }
-  public get id() {
-    return this.props.id;
-  }
-
-  public get name() {
-    return this.props.name;
-  }
-  public get price() {
-    return this.props.price;
-  }
-  public get quantity() {
-    return this.props.quantity;
-  }
-  public increaseQuantity(quantity: number) {
-    this.props.quantity += quantity;
-  }
-
-  public decreaseQuantity(quantity: number) {
-    this.props.quantity -= quantity;
-  }
+  @Column("int")
+  quantity!: number;
 }
+
+export default ProductDB;
